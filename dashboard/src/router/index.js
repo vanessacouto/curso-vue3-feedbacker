@@ -4,7 +4,7 @@ const Home = () => import('../views/Home/index.vue')
 const Feedbacks = () => import('../views/Feedbacks/index.vue')
 const Credencials = () => import('../views/Credencials/index.vue')
 
-export const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -14,7 +14,7 @@ export const routes = [
     path: '/feedbacks',
     name: 'Feedbacks',
     component: Feedbacks,
-    meta: {
+    meta: { // usuario deve estar autenticado para acessar
       hasAuth: true
     }
   },
@@ -22,12 +22,12 @@ export const routes = [
     path: '/credencials',
     name: 'Credencials',
     component: Credencials,
-    meta: {
+    meta: { // usuario deve estar autenticado para acessar
       hasAuth: true
     }
   },
   {
-    path: '/:pathMatch(.*)*',
+    path: '/:pathMatch(.*)*', // se cair em qualquer rota que não esteja definida acima, redireciona pra Home
     redirect: { name: 'Home' }
   }
 ]
