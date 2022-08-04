@@ -17,17 +17,7 @@
           :class="{
             'border-brand-danger': !!state.email.errorMessage
           }"
-          class="
-            block
-            w-full
-            px-4
-            py-3
-            mt-1
-            text-lg
-            bg-gray-100
-            border-transparent
-            rounded
-          "
+          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-transparent rounded"
           placeholder="jane.doe@gmail.com"
         />
         <span
@@ -42,21 +32,11 @@
         <span class="text-lg font-medium text-gray-800">Senha</span>
         <input
           v-model="state.password.value"
-          type="email"
+          type="password"
           :class="{
             'border-brand-danger': !!state.password.errorMessage
           }"
-          class="
-            block
-            w-full
-            px-4
-            py-3
-            mt-1
-            text-lg
-            bg-gray-100
-            border-transparent
-            rounded
-          "
+          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-transparent rounded"
           placeholder="****"
         />
         <span
@@ -83,24 +63,30 @@
 
 <script>
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { useField } from 'vee-validate'
+import { useToast } from 'vue-toastification'
 import useModal from '../../hooks/useModal'
-import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
+import {
+  validateEmptyAndLength3,
+  validateEmptyAndEmail
+} from '../../utils/validators'
+import services from '../../services'
 
 export default {
   setup () {
+    const router = useRouter()
     const modal = useModal()
+    const toast = useToast()
 
     // renomeando as variaveis
-    const {
-      value: emailValue,
-      errorMessage: emailErrorMessage
-    } = useField('email', validateEmptyAndEmail)
+    const { value: emailValue, errorMessage: emailErrorMessage } = useField(
+      'email',
+      validateEmptyAndEmail
+    )
 
-    const {
-      value: passwordValue,
-      errorMessage: passwordErrorMessage
-    } = useField('password', validateEmptyAndLength3)
+    const { value: passwordValue, errorMessage: passwordErrorMessage } =
+      useField('password', validateEmptyAndLength3)
 
     const state = reactive({
       hasErrors: false,
@@ -114,7 +100,42 @@ export default {
         errorMessage: passwordErrorMessage
       }
     })
-    function handleSubmit () {}
+    async function handleSubmit () {
+      try {
+        toast.clear()
+        state.isLoading = true
+        const { data, errors } = await services.auth.login({
+          email: state.email.value,
+          password: state.password.value
+        })
+
+        // se não tiver erros
+        if (!errors) {
+          window.localStorage.setItem('token', data.token)
+          router.push({ name: 'Feedbacks' })
+          state.isLoading = false
+          modal.close()
+          return
+        }
+
+        if (errors.status === 404) {
+          toast.error('E-mail não encontrado')
+        }
+        if (errors.status === 401) {
+          toast.error('E-mail/senha inválidos')
+        }
+        if (errors.status === 400) {
+          toast.error('Ocorreu um erro ao fazer o login')
+        }
+
+        state.isLoading = false
+      } catch (error) {
+        state.isLoading = false
+        state.hasErrors = !!error
+        toast.error('Ocorreu um erro ao fazer o login')
+      }
+    }
+
     return {
       state,
       close: modal.close,
