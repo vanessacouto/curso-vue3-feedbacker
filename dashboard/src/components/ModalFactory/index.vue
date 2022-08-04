@@ -29,7 +29,7 @@
             animate__animated animate__fadeInDown animate__faster
           "
         >
-          <div class="flex flex-col px-12 py10 bg-white">
+          <div class="flex flex-col px-12 py-10 bg-white">
             <component :is="state.component" />
           </div>
         </div>
