@@ -1,5 +1,7 @@
 import axios from 'axios'
+import router from '../router'
 import AuthService from './auth'
+import UsersService from './users'
 
 const API_ENVS = {
   production: '',
@@ -11,6 +13,17 @@ const httpClient = axios.create({
   baseURL: API_ENVS.local
 })
 
+// intercepta as requisicoes enviadas para conseguirmos enviar o token junto
+httpClient.interceptors.request.use(config => {
+  const token = window.localStorage.getItem('token')
+
+  if (token) {
+    config.headers.common.Authorization = `Bearer ${token}`
+  }
+
+  return config
+})
+
 // cai no catch do erro só se forem esses erros, pois os demais estamos tratando (erros 404, 401 e 400)
 httpClient.interceptors.response.use((response) => response, (error) => {
   const canThrowAnError = error.request.status === 0 ||
@@ -19,9 +32,16 @@ httpClient.interceptors.response.use((response) => response, (error) => {
   if (canThrowAnError) {
     throw new Error(error.message)
   }
+
+  // se o token nao for valido, vai retornar 401
+  if (error.response.status === 401) {
+    router.push({ name: 'Home' })
+  }
+
   return error
 })
 
 export default {
-  auth: AuthService(httpClient)
+  auth: AuthService(httpClient),
+  users: UsersService(httpClient)
 }
