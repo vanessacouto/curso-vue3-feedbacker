@@ -5,11 +5,12 @@
 <script>
 import Loading from './Loading.vue'
 import Copy from './Copy.vue'
+import ChevronDown from './ChevronDown.vue'
 
 // se usar esse componente e passar uma 'prop' escrito 'Loading', esse Loading será
 // usado aqui no ':is' (vue fará essa substituição)
 export default {
-  components: { Loading, Copy },
+  components: { Loading, Copy, ChevronDown },
   props: {
     name: { type: String, required: true }
   }
