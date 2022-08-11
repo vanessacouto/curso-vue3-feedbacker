@@ -9,17 +9,6 @@ Object {
 }
 `;
 
-exports[`Validators utils deve retornar um usuario quand o usuario se registrar: email 1`] = `
-Object {
-  "data": Object {
-    "email": "vanessaca@email.com.br",
-    "name": "Vanessa Almeida C",
-    "password": "1234",
-  },
-  "errors": null,
-}
-`;
-
 exports[`Validators utils deve retornar um usuario quando o usuario se registrar: email 1`] = `
 Object {
   "data": Object {
