@@ -13,6 +13,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
+    "serve": "^14.0.1",
     "tiny-emitter": "^2.1.0",
     "vee-validate": "^4.6.2",
     "vue": "^3.0.0",
