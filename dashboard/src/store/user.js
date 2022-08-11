@@ -10,20 +10,20 @@ let state = reactive(userInitialState)
 export default state
 
 // reseta a store ao estado inicial
-export function resetUserStore() {
+export function resetUserStore () {
   state = reactive(userInitialState)
 }
 
 // só pode alterar 'user' pelos metodo abaixo
-export function cleanCurrentUser(user) {
+export function cleanCurrentUser (user) {
   state.currentUser = {}
 }
 
-export function setCurrentUser(user) {
+export function setCurrentUser (user) {
   state.currentUser = user
 }
 
-export function setApiKey(apiKey) {
+export function setApiKey (apiKey) {
   const currentUser = { ...state.currentUser, apiKey }
   state.currentUser = currentUser
 }
