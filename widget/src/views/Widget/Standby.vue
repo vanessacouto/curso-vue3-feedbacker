@@ -21,8 +21,9 @@ interface SetupReturn {
   emit: SetupContext['emit']
 }
 
-export default defineComponent ({
+export default defineComponent({
   components: { Icon },
+  emits: ['open-box'],
   setup (_, { emit }: SetupContext): SetupReturn {
     return { emit }
   }

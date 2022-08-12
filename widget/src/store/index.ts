@@ -1,57 +1,58 @@
 import { reactive, readonly } from 'vue'
 
-export type StoreState = { // tipagem da store
-    currentComponent: string;
-    message: string;
-    feedbackType: string;
-    fingerprint: string;
-    apiKey: string;
-    currentPage: string;
+export type StoreState = {
+  // tipagem da store
+  currentComponent: string
+  message: string
+  feedbackType: string
+  fingerprint: string
+  apiKey: string
+  currentPage: string
 }
 
 const initialState: StoreState = {
-    currentComponent: 'SelectFeedbackType',
-    message: '',
-    feedbackType: '',
-    fingerprint: '',
-    apiKey: '',
-    currentPage: ''
+  currentComponent: 'SelectFeedbackType',
+  message: '',
+  feedbackType: '',
+  fingerprint: '',
+  apiKey: '',
+  currentPage: ''
 }
 
 // cria um estado reativo do tipo StoreState
 const state = reactive<StoreState>({ ...initialState })
 
 export function setCurrentComponent (component: string): void {
-    state.currentComponent = component
+  state.currentComponent = component
 }
 
 export function setMessage (message: string): void {
-    state.message = message
+  state.message = message
 }
 
 export function setFeedbackType (type: string): void {
-    state.feedbackType = type
+  state.feedbackType = type
 }
 
 export function setCurrentPage (page: string): void {
-    state.currentPage = page
+  state.currentPage = page
 }
 
 export function setApiKey (apiKey: string): void {
-    state.apiKey = apiKey
+  state.apiKey = apiKey
 }
 
 export function setFingerprint (fingerprint: string): void {
-    state.fingerprint = fingerprint
+  state.fingerprint = fingerprint
 }
 
 export function resetStore (): void {
-    setCurrentComponent(initialState.currentComponent)
-    setMessage(initialState.message)
-    setFeedbackType(initialState.feedbackType)
-    setCurrentPage(initialState.currentPage)
-    setApiKey(initialState.apiKey)
-    setFingerprint(initialState.fingerprint)
+  setCurrentComponent(initialState.currentComponent)
+  setMessage(initialState.message)
+  setFeedbackType(initialState.feedbackType)
+  setCurrentPage(initialState.currentPage)
+  setApiKey(initialState.apiKey)
+  setFingerprint(initialState.fingerprint)
 }
 
-export default readonly (state)
+export default readonly(state)

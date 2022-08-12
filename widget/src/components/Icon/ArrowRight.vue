@@ -2,12 +2,12 @@
   <svg
     :width="size"
     :height="size"
-    viewBox="0 0 19 22"
+    viewBox="0 0 13 5"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M14 0H2C0.9 0 0 0.9 0 2V16H2V2H14V0ZM13 4L19 10V20C19 21.1 18.1 22 17 22H5.99C4.89 22 4 21.1 4 20L4.01 6C4.01 4.9 4.9 4 6 4H13ZM12 11H17.5L12 5.5V11Z"
+      d="M3.07415 3.21819L12.3158 3.23798L12.3183 2.06329L3.07666 2.04351L3.08044 0.281483L0.00512019 2.62427L3.07038 4.98021L3.07415 3.21819Z"
       :fill="color"
     />
   </svg>
@@ -21,5 +21,3 @@ export default {
   }
 }
 </script>
-
-<style></style>
