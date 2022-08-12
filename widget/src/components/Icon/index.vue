@@ -1,0 +1,19 @@
+<template>
+  <component :is="name" v-bind="$props" />
+</template>
+
+<script>
+import Loading from './Loading.vue'
+import Copy from './Copy.vue'
+import ChevronDown from './ChevronDown.vue'
+import Chat from './Chat.vue'
+
+// se usar esse componente e passar uma 'prop' escrito 'Loading', esse Loading será
+// usado aqui no ':is' (vue fará essa substituição)
+export default {
+  components: { Loading, Copy, ChevronDown, Chat },
+  props: {
+    name: { type: String, required: true }
+  }
+}
+</script>
