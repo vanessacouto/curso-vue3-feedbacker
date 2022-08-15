@@ -8,6 +8,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import SelectFeedbackType from './SelectFeedbackType.vue'
+import WriteAFeedback from './WriteAFeedback.vue'
 import useNavigation, { Navigation } from '../../hooks/navigation'
 import useStore from '../../hooks/store'
 import { StoreState, setFeedbackType } from '../../store'
@@ -19,6 +21,7 @@ interface SetupReturn {
 }
 
 export default defineComponent({
+  components: { SelectFeedbackType, WriteAFeedback },
   setup (): SetupReturn {
     const store = useStore()
     const { next } = useNavigation()
