@@ -9,11 +9,13 @@ import ChevronDown from './ChevronDown.vue'
 import Chat from './Chat.vue'
 import Close from './Close.vue'
 import ArrowRight from './ArrowRight.vue'
+import Check from './Check.vue'
+import Atention from './Atention.vue'
 
 // se usar esse componente e passar uma 'prop' escrito 'Loading', esse Loading será
 // usado aqui no ':is' (vue fará essa substituição)
 export default {
-  components: { Loading, Copy, ChevronDown, Chat, Close, ArrowRight },
+  components: { Loading, Copy, ChevronDown, Chat, Close, ArrowRight, Check, Atention },
   props: {
     name: { type: String, required: true }
   }
