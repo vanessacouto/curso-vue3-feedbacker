@@ -1,4 +1,5 @@
 import axios from 'axios'
+import FeedbacksService from './feedbacks'
 
 const API_ENVS = {
   production: 'https://backend-treinamento-vue3-vanessacouto.vercel.app',
@@ -25,4 +26,5 @@ httpClient.interceptors.response.use((response) => {
 })
 
 export default {
+  feedbacks: FeedbacksService(httpClient)
 }

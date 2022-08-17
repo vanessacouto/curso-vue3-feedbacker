@@ -92,7 +92,7 @@ import { setApiKey } from '../../store/user'
 
 export default {
   components: { ContentLoader, HeaderLogged, Icon },
-  setup() {
+  setup () {
     const store = useStore()
     const toast = useToast()
     const state = reactive({
@@ -109,12 +109,12 @@ export default {
       }
     )
 
-    function handleError(error) {
+    function handleError (error) {
       state.isLoading = false
       state.hasError = !!error
     }
 
-    async function handleGenerateApiKey() {
+    async function handleGenerateApiKey () {
       try {
         state.isLoading = true
         const { data } = await services.users.generateApiKey()
@@ -126,7 +126,7 @@ export default {
       }
     }
 
-    async function handleCopy() {
+    async function handleCopy () {
       toast.clear()
       try {
         await navigator.clipboard.writeText(store.User.currentUser.apiKey)

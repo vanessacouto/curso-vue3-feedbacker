@@ -7,7 +7,7 @@ interface IframeControl {
 }
 
 export default function useIframeControl (): IframeControl {
-  function updateCoreValuesOnStore(): void {
+  function updateCoreValuesOnStore (): void {
     if (process.env.NODE_ENV === 'production') {
       const query = new URLSearchParams(window.location.search)
       const apiKey = query.get('api_key') ?? ''
@@ -21,7 +21,7 @@ export default function useIframeControl (): IframeControl {
     }
 
     setCurrentPage('https://playground-url.com')
-    setApiKey('api_key_de_teste')
+    setApiKey('6686b418-cb3f-4ccc-ae80-7716008a38fd')
     setFingerprint('123456')
   }
 

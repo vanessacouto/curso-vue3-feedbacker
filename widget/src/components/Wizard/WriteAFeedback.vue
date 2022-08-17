@@ -30,10 +30,9 @@
 import { ComputedRef, computed, defineComponent, reactive } from 'vue'
 import useNavigation from '../../hooks/navigation'
 import { setMessage } from '../../store'
-import Icon from '../Icon'
+import Icon from '../Icon/index.vue'
 import useStore from '../../hooks/store'
-// import services from '../../services'
-const services = {}
+import services from '../../services'
 
 type State = {
   feedback: string
